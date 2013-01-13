@@ -1,0 +1,59 @@
+
+/* Main reset */
+* {margin: 0px }
+
+/* Globals */
+body{
+	background: #bcb;
+}
+
+#outWrapper{
+	width:950px;
+	margin: 0 auto;
+	background:#fff;
+	padding:20px;
+}
+
+#inWrapper{
+	background:#efe;
+	padding:10px;
+}
+
+.clearBoth{
+	clear:both;
+}
+
+#topBar{
+	background:#fff;
+	margin-bottom:5px;
+	padding:10px;
+}
+
+#leftColumn{
+	background:#cdc;
+	width:290px;
+	height:600px;
+	padding:10px;
+	float:left;
+}
+
+#rightColumn{
+	width:600px;
+	height:600px;
+	background:#fff;
+	float:left;
+	padding:10px;
+}
+
+/*data for each file*/
+.theFiles{
+	position:relative;
+	display:none;
+	background:#fff;
+	padding:5px;
+	height:470px;
+}
+
+#fileDiv1{
+	display:block;
+}
