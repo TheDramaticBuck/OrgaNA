@@ -1,7 +1,7 @@
 #!/opt/local/bin/python
 
-from jcProg import hBas
-from jcProg import sysData
+# from jcProg import hBas
+from jcProg import sysData,hBas,teData
 import zipfile
 
 # for debugging
@@ -16,7 +16,7 @@ cgitb.enable()
 print("Content-Type: text/html\n")
 
 # this reads the zipFile
-readZip=zipfile.ZipFile("dwn/Archive.zip","r")
+readZip=zipfile.ZipFile("dwn/Threads.zip","r")
 
 # This ceates a list of all the files in the zipfile
 fileList=readZip.namelist()
@@ -25,7 +25,6 @@ fileList=readZip.namelist()
 # of the zip file
 zipName="Archive"
 theTitle=("%s System Stats" % zipName)
-
 
 # Start the HTML structure
 
@@ -70,8 +69,10 @@ hBas.htmlEndTB()
 
 # dropdown menu for each file
 hBas.htmlStartLC()
+
 sysData.dropDownMenu(fileList)
-sysData.printFileData(fileList)
+sysData.printFileData(readZip)
+
 hBas.htmlEndLC()
 
                                  ##
