@@ -15,21 +15,30 @@ cgitb.enable()
 
 print("Content-Type: text/html\n")
 
+# # # # # # # # # # # # # # # # # # # #
+# # # # # # ZIP FILE STUFF  # # # # # #
 # this reads the zipFile
+
 readZip=zipfile.ZipFile("dwn/Threads.zip","r")
 
 # This ceates a list of all the files in the zipfile
 fileList=readZip.namelist()
 
+# starts the zip file as an object
+theZipF=sysData.systemData(readZip)
+
 # the title of the page by taking the name
 # of the zip file
-zipName="Archive"
-theTitle=("%s System Stats" % zipName)
+zipName="Forum"
 
-# Start the HTML structure
+# # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # #  Start the HTML structure # # # # # #
 
 # # # # # START HEADER SECTION # # # # # #
-hBas.htmlStart()
+hBas.htmlStart()                         #
+
+# Sets the page title
+theTitle=("%s System Stats" % zipName)
 hBas.htmlTitle(theTitle)
 
 # add the css page
@@ -51,14 +60,9 @@ hBas.bodyStart()
 ## ## ## START TOP STAT BAR## ## ##
 hBas.htmlStartTB()				 ##
 
-# the number of files (networks)
-noFiles=len(fileList)
+print('<h1>%s System Stats</h1>'%zipName)
 
-theZipI=sysData.systemData(readZip)
-print("<h1> %s System Stats</h1>" % zipName)
-print("%d groups in Total<br>" % noFiles)
-print("%d Users in Total" % theZipI.totalUsers())
-print("%d Posts in Total" % theZipI.totalPosts())
+
 
 hBas.htmlEndTB()				 ##
 ## ## ## END TOP STAT BAR  ## ## ##
@@ -84,13 +88,27 @@ hBas.htmlEndLC()
 
 ## ## ## ## ## ## ## ## ## ## ## ##
 ## ## START THE RIGHT COLUMN  ## ##
-                                 ##
+hBas.htmlStartRC()               ##
 
-hBas.htmlStartRC()
 print('<h1>Items in Right Column</h1>')
-hBas.htmlEndRC()
 
-                                 ##
+t_files=theZipF.totalFiles()
+t_users=theZipF.totalUsers()
+t_posts=theZipF.totalPosts()
+
+t_coreUsers=theZipF.totalCoreUsers()
+
+print(t_coreUsers)
+
+# Loads the html formating to a variable
+html_sysStats=hBas.html_sysStats()
+
+# Prints all the results on the top bar with
+# formating from the hBas file.
+print(html_sysStats % (t_files,t_users,t_posts))
+
+
+hBas.htmlEndRC()                 ##
 ## ## ## END RIGHT COLUMN  ## ## ##
 ## ## ## ## ## ## ## ## ## ## ## ##
 

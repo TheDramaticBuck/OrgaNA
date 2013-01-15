@@ -43,8 +43,8 @@ def printFileData(readZip):
 
 # Items in the top info Bar
 # A class that will read each file in the zip
+# and get the data of all the users
 class systemData():
-	
 	
 	def __init__(self,readZip):
 		self.readZip=readZip
@@ -67,4 +67,16 @@ class systemData():
 			for eachUser in users:
 				totalPosts.append(eachUser)
 		return(len(totalPosts))
-# Total number of posts
+
+	def totalFiles(self):
+		return len(self.fileList)
+	
+	def totalCoreUsers(self):
+		# this will need to call a more
+		# complicated script from get layers
+		import getLayers
+		# it will start by just reading the zipfile
+		# and then letting the other thing do the rest
+		sysLayers=getLayers.netLayers(self.readZip)
+		what=sysLayers.userStatDF()
+		return what
