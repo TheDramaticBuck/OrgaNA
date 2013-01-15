@@ -46,19 +46,21 @@ hBas.bodyStart()
 
 # # # # # START MAIN BODY # # # # # #
 
-print("<h1> %s System Stats</h1>" % zipName)
 
 ## ## ## ## ## ## ## ## ## ## ## ##
 ## ## ## START TOP STAT BAR## ## ##
-                                 ##
-hBas.htmlStartTB()
+hBas.htmlStartTB()				 ##
 
 # the number of files (networks)
 noFiles=len(fileList)
-print("%d groups in total<br>" % noFiles)
 
-hBas.htmlEndTB()
-                                 ##
+theZipI=sysData.systemData(readZip)
+print("<h1> %s System Stats</h1>" % zipName)
+print("%d groups in Total<br>" % noFiles)
+print("%d Users in Total" % theZipI.totalUsers())
+print("%d Posts in Total" % theZipI.totalPosts())
+
+hBas.htmlEndTB()				 ##
 ## ## ## END TOP STAT BAR  ## ## ##
 ## ## ## ## ## ## ## ## ## ## ## ##
 

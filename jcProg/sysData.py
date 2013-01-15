@@ -1,5 +1,8 @@
 import teData
 
+### ### Items in the left Column ### ###
+
+# Creates DropDown file menu
 def dropDownMenu(x):
 	from re import sub
 	theList=x
@@ -12,6 +15,7 @@ def dropDownMenu(x):
 		counter+=1
 	print('</select>\n</div>')
 
+# Table of stats for each team
 def printFileData(readZip):
 	theZip=readZip
 	fileList=theZip.namelist()
@@ -36,3 +40,31 @@ def printFileData(readZip):
 		# print(fileData)
 		print('</div>')
 		counter+=1
+
+# Items in the top info Bar
+# A class that will read each file in the zip
+class systemData():
+	
+	
+	def __init__(self,readZip):
+		self.readZip=readZip
+		self.fileList=readZip.namelist()
+
+	def totalUsers(self):
+		userSet=set()
+		for eachItem in self.fileList:
+			fileData=self.readZip.read(eachItem)
+			users=fileData.split('\n')
+			for eachUser in users:
+				userSet.add(eachUser)
+		return(len(userSet))
+
+	def totalPosts(self):
+		totalPosts=[]
+		for eachItem in self.fileList:
+			fileData=self.readZip.read(eachItem)
+			users=fileData.split('\n')
+			for eachUser in users:
+				totalPosts.append(eachUser)
+		return(len(totalPosts))
+# Total number of posts
