@@ -39,12 +39,27 @@ def htmlLJS(x):
 # # # Body Contents # # #
 # # # # # # # # # # # # #
 
-# Top Bar
+# # Top Bar
 def htmlStartTB():
 	print('<div id="topBar">')
 
 def htmlEndTB():
 	print('</div>')
+
+# # Top bar results Display
+# # # #
+
+def html_sysStats():
+	outPut="""
+	<table>
+	<tr><td>Files:</td><td>%d</td></tr>
+	<tr><td>Users:</td><td>%d</td></tr>
+	<tr><td>Entries:</td><td>%d</td></tr>
+	<tr><td></td><td></td></tr>
+	</table>
+	"""
+	return outPut
+
 
 # left Column
 def htmlStartLC():

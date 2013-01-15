@@ -4,7 +4,7 @@
 
 /* Globals */
 body{
-	background: #bcb;
+	background: #bbb;
 }
 
 #outWrapper{
@@ -15,7 +15,7 @@ body{
 }
 
 #inWrapper{
-	background:#efe;
+	background:#eee;
 	padding:10px;
 }
 
@@ -30,7 +30,7 @@ body{
 }
 
 #leftColumn{
-	background:#cdc;
+	background:#ccc;
 	width:290px;
 	height:600px;
 	padding:10px;
