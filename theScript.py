@@ -1,17 +1,12 @@
 #!/opt/local/bin/python
 
 # from jcProg import hBas
-from jcProg import sysData,hBas,teData
+from jcProg import sysData,hBas,teData,copData
 import zipfile
 
 # for debugging
 import cgitb
 cgitb.enable()
-
-# project path
-#import os
-#gettext = lambda s: s
-#PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 print("Content-Type: text/html\n")
 
@@ -24,12 +19,22 @@ readZip=zipfile.ZipFile("dwn/Threads.zip","r")
 # This ceates a list of all the files in the zipfile
 fileList=readZip.namelist()
 
-# starts the zip file as an object
-theZipF=sysData.systemData(readZip)
 
 # the title of the page by taking the name
 # of the zip file
 zipName="Forum"
+
+# A good idea to start some global variables....
+
+## Global file list
+zipFileList=readZip.namelist()
+
+## Global full user list
+t_fullEntries=copData.getFullEntries(readZip)
+
+## Global user set
+t_userSet=set(t_fullEntries)
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # #  Start the HTML structure # # # # # #
@@ -90,15 +95,10 @@ hBas.htmlEndLC()
 ## ## START THE RIGHT COLUMN  ## ##
 hBas.htmlStartRC()               ##
 
-print('<h1>Items in Right Column</h1>')
 
-t_files=theZipF.totalFiles()
-t_users=theZipF.totalUsers()
-t_posts=theZipF.totalPosts()
-
-t_coreUsers=theZipF.totalCoreUsers()
-
-print(t_coreUsers)
+t_files=len(zipFileList)
+t_users=len(t_userSet)
+t_posts=len(t_fullEntries)
 
 # Loads the html formating to a variable
 html_sysStats=hBas.html_sysStats()
@@ -107,6 +107,11 @@ html_sysStats=hBas.html_sysStats()
 # formating from the hBas file.
 print(html_sysStats % (t_files,t_users,t_posts))
 
+c_Stats=copData.copStats(t_fullEntries)
+print(len(c_Stats.userSet))
+print(len(c_Stats.rawUserList))
+
+print(c_Stats.getUsersInLayer(2))
 
 hBas.htmlEndRC()                 ##
 ## ## ## END RIGHT COLUMN  ## ## ##
